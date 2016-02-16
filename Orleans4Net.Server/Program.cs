@@ -1,15 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Orleans4Net.Server{
+    #region Using
 
-namespace Orleans4Net.Server
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+    using System;
+
+    using Orleans.Runtime.Host;
+
+    #endregion
+
+    internal class Program{
+
+        private static void Main(string[] args){
+            using (SiloHost host = new SiloHost("Default")){
+                host.LoadOrleansConfig();
+                host.InitializeOrleansSilo();
+                host.StartOrleansSilo();
+
+                Console.WriteLine("Start--------");
+                Console.ReadLine();
+
+                host.StopOrleansSilo();
+            }
         }
+
     }
+
 }
